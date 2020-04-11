@@ -1,0 +1,28 @@
+@import '../../../themes.scss';
+.mat-card {
+    width:80%;
+    margin: 10% auto;
+    border-radius: 8px;
+    border: 2px solid $accent;
+}
+// .card-header-color {
+//   background-color: $accent;
+//   align-items: center !important;
+//   align-content: center !important;
+
+// }
+
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .form-element {
+    padding: 5px 0px 25px 2px;
+    width: 100%;
+  }
+  
+  .button {
+    width: 100%;
+  }

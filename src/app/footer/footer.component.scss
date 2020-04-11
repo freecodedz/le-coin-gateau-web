@@ -1,0 +1,74 @@
+@import '../../themes.scss';
+
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background: $accent;
+    .social-icons
+    {
+      text-align:right;
+      a
+      {
+        width:40px;
+        height:40px;
+        line-height:40px;
+        margin-left:6px;
+        margin-right:6px;
+        border-radius:100%;
+        background-color:#33353d
+      }
+    }
+  }
+.copyright-text
+{
+  font-size:12px;
+  margin-top: 10px;
+}
+  
+ .social-icons {
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none;
+  li {
+    display:inline-block;
+    margin-bottom:4px;
+    margin-top:4px;
+    .title {
+      margin-right:15px;
+      text-transform:uppercase;
+      color:#96a2b2;
+      font-weight:700;
+      font-size:13px
+    }
+  }
+  a{
+    background-color:#eceeef;
+    color:#ffffff;
+    font-size:16px;
+    display:inline-block;
+    line-height:44px;
+    width:44px;
+    height:44px;
+    text-align:center;
+    margin-right:8px;
+    border-radius:100%;
+    -webkit-transition:all .2s linear;
+    -o-transition:all .2s linear;
+    transition:all .2s linear
+  }
+}
+
+.social-icons a.facebook:hover
+{
+  background:#3b5998
+}
+.social-icons a.instagram:hover
+{
+    background: #f09433;
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
+}
