@@ -5,7 +5,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { map, debounceTime, tap, switchMap, finalize} from 'rxjs/operators';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-
+import * as moment from 'moment';
 
 
 @Component({
@@ -17,8 +17,8 @@ export class CakeSearchComponent implements OnInit {
 
 
   calendarIcon = faCalendarAlt;
-  minDate = new Date();
-  maxDate = new Date(2021, 0, 1);
+  minDate = moment();
+  maxDate: any;
 
   searchGroup: FormGroup;
   filteredCities: City[] = [];
@@ -35,7 +35,7 @@ export class CakeSearchComponent implements OnInit {
     this.searchGroup = this.fb.group({
       'cakeModel': [null, Validators.required],
       'city': [null, Validators.required],
-      'deliveryDate': [null, Validators.required]
+      'eventDate': [null, Validators.required]
     });
 
     this.searchGroup.get('city').valueChanges.pipe(
@@ -47,6 +47,7 @@ export class CakeSearchComponent implements OnInit {
       )
       )
     ).subscribe(result => this.filteredCities = result);
+    this.maxDate =  moment(this.minDate).add(1, 'y');
 
   }
 
