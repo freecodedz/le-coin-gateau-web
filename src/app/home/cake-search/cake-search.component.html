@@ -1,23 +1,27 @@
 <mat-card>
    <mat-card-content>
-      <form class="form" [formGroup]='searchGroup' (ngSubmit)="onSubmit(searchGroup.value)">
-         <mat-form-field class="form-element">
-            <mat-label>cake</mat-label>
+      <form class="form" [formGroup]='searchForm' (ngSubmit)="onSubmit()">
+         <mat-form-field class="form-element" appearance="outline">
+            <mat-label>Gâteau</mat-label>
             <mat-select formControlName='cakeModel'>
                <mat-option value="wc">Wedding Cake</mat-option>
                <mat-option value="bc">Birthday Cake</mat-option>
                <mat-option value="cc">Cup Cake</mat-option>
                <mat-option value="o">Oriental</mat-option>
             </mat-select>
+            <mat-error *ngIf="!searchForm.controls['cakeModel'].valid">
+               Veuillez Choisir un modèle de gateau
+            </mat-error> 
          </mat-form-field>
-         <mat-form-field class="form-element">
+         <mat-form-field class="form-element" appearance="outline" >
+            <mat-label>Ville</mat-label>
             <input matInput  placeholder = "Ville"  formControlName='city' 
             [matAutocomplete] = "auto">
-            <mat-error *ngIf="!searchGroup.controls['city'].valid && searchGroup.controls['city'].touched">
+            <mat-error *ngIf="!searchForm.controls['city'].valid ">
                Veuillez saisir une ville.
-             </mat-error> 
+            </mat-error> 
          </mat-form-field>
-            <mat-autocomplete #auto = "matAutocomplete" [displayWith]="displayFn">
+            <mat-autocomplete #auto = "matAutocomplete" [displayWith]="displayFn" >
                <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
                <ng-container *ngIf="!isLoading">
                <mat-option *ngFor = "let city of filteredCities" [value] = "city">
@@ -25,12 +29,14 @@
                </mat-option>
             </ng-container>
             </mat-autocomplete>
-         <mat-form-field class="form-element">
+   
+         <mat-form-field class="form-element" appearance="outline">
+            <mat-label>Choisir une date</mat-label>
             <input matInput [matDatepicker]="eventDate" formControlName='eventDate' 
-            readonly [min]="minDate" 
+             [min]="minDate" 
             [max]="maxDate">
             <mat-hint>Les dates de réservation doivent être inférieur à une année.</mat-hint> 
-            <mat-error *ngIf="!searchGroup.controls['eventDate'].valid && searchGroup.controls['eventDate'].touched">
+            <mat-error *ngIf="!searchForm.controls['eventDate'].valid">
                Veuillez saisir une date de commande.
              </mat-error> 
             <mat-datepicker-toggle matSuffix [for]="eventDate">
@@ -41,8 +47,8 @@
             <mat-datepicker startView="multi-year" touchUi="true" #eventDate color="accent"></mat-datepicker>
          </mat-form-field>
          <div class="form-element">
-            <button mat-raised-button color="accent" type="submit" class="button" value = "submit" 
-            [disabled]="!searchGroup.valid"><mat-icon>search</mat-icon>Chercher ton gâteau</button>
+            <button mat-raised-button color="primary" type="submit" class="button" value = "submit" 
+            ><mat-icon>search</mat-icon>Chercher ton gâteau</button>
          </div>
       </form>
    </mat-card-content>

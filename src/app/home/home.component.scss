@@ -1,4 +1,4 @@
-
+@import '../../themes.scss';
  .home-content {
     background: linear-gradient(90deg, #2b2e43 50%, #2b2e43 50%,
     #ffffff 50.1%, #ffffff 100%);
@@ -8,7 +8,7 @@
     margin-top: 100px;
     padding-left: 2rem;
     h2 {
-        color: #FFA450;
+        color: $accent;
         font-size: 3rem;
     }
     p {
