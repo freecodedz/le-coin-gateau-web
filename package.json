@@ -1,5 +1,5 @@
 {
-  "name": "gateau-waw",
+  "name": "lecoingateau",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "api": "json-server C:/workspace/gateau-waw/api/db.json --routes C:/workspace/gateau-waw/api/routes.json --no-cors=true"
+    "api": "json-server C:/workspace/lecoingateau/api/db.json --routes C:/workspace/lecoingateau/api/routes.json --no-cors=true"
   },
   "private": true,
   "dependencies": {
