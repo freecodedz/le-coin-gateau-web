@@ -1,10 +1,20 @@
-
+@import '../../themes.scss';
 .spacer {
     flex: 1 1 auto;
 }
 
 .fond {
-    position: absolute;
-background-color:transparent;
+    background-color:transparent;
+}
+
+.header-small-media{
+    border-bottom: 1px solid $primary;
+    padding:5px;
+    text-align: center;
+    min-width: 400px;
+    &:hover {
+        background-color: #f1f1f1 !important;
+     }
+
 }
 

@@ -1,0 +1,24 @@
+@import '../../../themes.scss';
+.component-style{
+    font-size: 15px;
+    &:hover {
+        color: $primary;
+        cursor: pointer;
+     }
+}
+
+.component-style-log-in{
+    font-size: 15px;
+    &:hover {
+        color:  #86BC28;
+        cursor: pointer;
+     }
+}
+
+.icon-color {
+    color:$primary;
+}
+
+.user-log-in {
+    color:  #86BC28;
+}
