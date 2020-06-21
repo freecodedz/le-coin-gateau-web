@@ -1,7 +1,7 @@
 import { City } from './models/city';
 import { CakeSearchService } from './services/cake-search.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { map, debounceTime, tap, switchMap, finalize} from 'rxjs/operators';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
@@ -17,28 +17,23 @@ export class CakeSearchComponent implements OnInit {
 
 
   calendarIcon = faCalendarAlt;
-  minDate = moment();
-  maxDate: any;
+  minDate: Date;
+  maxDate: Date;
 
-  searchGroup: FormGroup;
+  searchForm: FormGroup;
   filteredCities: City[] = [];
   isLoading = false;
-  post: any = '';
 
 
 
-  constructor(private fb: FormBuilder, private cakeSearchService: CakeSearchService) {
+  constructor( private cakeSearchService: CakeSearchService) {
   }
 
   ngOnInit() {
 
-    this.searchGroup = this.fb.group({
-      'cakeModel': [null, Validators.required],
-      'city': [null, Validators.required],
-      'eventDate': [null, Validators.required]
-    });
+    this.initForm();
 
-    this.searchGroup.get('city').valueChanges.pipe(
+    this.searchForm.get('city').valueChanges.pipe(
       debounceTime(300),
       tap(() => this.isLoading = true),
       switchMap(value => this.cakeSearchService.searchCity(value)
@@ -47,7 +42,6 @@ export class CakeSearchComponent implements OnInit {
       )
       )
     ).subscribe(result => this.filteredCities = result);
-    this.maxDate =  moment(this.minDate).add(1, 'y');
 
   }
 
@@ -55,9 +49,22 @@ export class CakeSearchComponent implements OnInit {
     if (city) { return city.name + ' - ' + city.zip_code; }
   }
 
-  onSubmit(post) {
-    // , eventType.value, eventDate.value
-    alert('Your Email is : ' + post );
+  onSubmit() {
+    if(this.searchForm.invalid){
+      return;
+    }
+    console.log(this.searchForm);
+  }
+
+  private initForm(): void {
+    this.minDate = new Date();
+    this.maxDate = new Date((this.minDate.getFullYear()) + 1, this.minDate.getMonth(), this.minDate.getDate());
+
+    this.searchForm = new FormGroup({
+      cakeModel: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      eventDate: new FormControl(null, Validators.required)
+    });
   }
 
 }

@@ -1,12 +1,17 @@
 <div class="row">
-<mat-toolbar >
     <span>       
         <img src="assets\images\logo-gateau-waw-2.png" height="50" width="60" alt="">
     </span>
+<mat-toolbar class="fond">
+    
     <div class="spacer"></div>
     <a mat-button routerLink="home">Home</a>
     <a mat-button>About us</a>
     <a mat-button>Contact us</a>
-    <a mat-raised-button color="accent">Connexion</a>
+    <button mat-raised-button  color="primary" (click)="openDialog()" *ngIf="socialUser == null; else deconnect">Connexion</button>
+    <ng-template #deconnect>
+        <button mat-raised-button  color="primary" (click)="logOut()" >Deconnexion</button>
+    </ng-template>
+
 </mat-toolbar>
 </div>
