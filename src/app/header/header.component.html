@@ -1,12 +1,51 @@
-<div class="row">
-<mat-toolbar >
-    <span>       
-        <img src="assets\images\logo-gateau-waw-2.png" height="50" width="60" alt="">
-    </span>
+<div class="row pt-4">
+    <div>       
+        <img src="assets\images\logo-lecoingateau-2.png" height="50" width="60" alt="">
+    </div>
     <div class="spacer"></div>
-    <a mat-button routerLink="home">Home</a>
-    <a mat-button>About us</a>
-    <a mat-button>Contact us</a>
-    <a mat-raised-button color="accent">Connexion</a>
-</mat-toolbar>
+    <div>
+    <mat-toolbar class="fond">
+        
+        <div class="d-md-none d-block">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="mw-100" >
+                <div  class="header-small-media">
+                    <app-header-button class="mb-4" [label]="postAdDesc" [picto]="postAdIcon"  ></app-header-button>
+                </div>
+                <div  class="header-small-media">
+                    <app-header-button [label]="searchCakeDesc" [picto]="searchCakeIcon"  ></app-header-button>
+                </div>
+                <div  class="header-small-media">
+                    <app-header-button [label]="bakeCakeDesc" [picto]="bakeCakeIcon" ></app-header-button>
+                </div>
+                <div  class="header-small-media">
+                    <app-header-button [label]="userDesc" [picto]="userIcon" (buttonAction)="openDialog()" 
+                        *ngIf="socialUser == null; else disconnect"></app-header-button>
+                </div>
+                <ng-template #disconnect>
+                    <div  class="header-small-media">
+                        <app-header-button [label]="userDesc" [picto]="userIcon" (buttonAction)="logOut()" [isUserLogIn]="socialUser !== null">
+                        </app-header-button>
+                    </div>
+                </ng-template>
+                <div  class="header-small-media">
+                    <app-header-button [label]="contactDesc" [picto]="contactIcon"></app-header-button>
+                </div>
+            </mat-menu>
+        </div>
+        <div class="d-md-block d-none d-md-inline-flex mt-4 mb-4">
+            <app-header-button [label]="postAdDesc" [picto]="postAdIcon"  ></app-header-button>
+            <app-header-button [label]="searchCakeDesc" [picto]="searchCakeIcon"  ></app-header-button>
+            <app-header-button [label]="bakeCakeDesc" [picto]="bakeCakeIcon" ></app-header-button>
+            <app-header-button [label]="userDesc" [picto]="userIcon" (buttonAction)="openDialog()" *ngIf="socialUser == null; else disconnect" 
+            ></app-header-button>
+            <ng-template #disconnect>
+                <app-header-button [label]="userDesc" [picto]="userIcon" (buttonAction)="logOut()" [isUserLogIn]="socialUser !== null"></app-header-button>
+            </ng-template>
+            <app-header-button [label]="contactDesc" [picto]="contactIcon"></app-header-button>
+        </div>  
+    </mat-toolbar>
+</div>
 </div>
